@@ -57,10 +57,16 @@ const About = () => {
                     </div>
 
                     <div className="mt-12 pt-8 border-t border-slate-200 flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-secondary" />
+                        <div className="w-12 h-12 rounded-full overflow-hidden border border-slate-200 shadow-sm bg-slate-100 flex-shrink-0">
+                            <img
+                                src="/img/lucio.jpg"
+                                alt="Lucio Rebora"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
                         <div>
-                            <p className="text-slate-900 font-bold">Fundador de ITIA</p>
-                            <p className="text-xs text-slate-500">Liderando la revolución IA</p>
+                            <p className="text-slate-900 font-bold">Lucio Rebora</p>
+                            <p className="text-xs text-slate-500">Co-fundador de ITIA</p>
                         </div>
                     </div>
                 </motion.div>

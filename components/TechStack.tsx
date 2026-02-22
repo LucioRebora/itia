@@ -5,12 +5,19 @@ import { motion } from "framer-motion";
 const techs = [
     { name: "Next.js", category: "Frontend" },
     { name: "Node.js", category: "Backend" },
+    { name: "Java", category: "Backend" },
+    { name: "Kotlin", category: "Backend" },
+    { name: "Go", category: "Backend" },
     { name: "Python", category: "IA & Data" },
     { name: "OpenAI / IA", category: "Modelos" },
-    { name: "AWS / Vercel", category: "Cloud" },
+    { name: "AWS", category: "Cloud" },
+    { name: "GCP", category: "Cloud" },
+    { name: "Azure", category: "Cloud" },
+    { name: "Vercel", category: "Cloud" },
     { name: "Docker", category: "DevOps" },
-    { name: "MongoDB", category: "Base de Datos" },
     { name: "PostgreSQL", category: "Base de Datos" },
+    { name: "MongoDB", category: "Base de Datos" },
+    { name: "MySQL", category: "Base de Datos" },
 ];
 
 const TechStack = () => {
