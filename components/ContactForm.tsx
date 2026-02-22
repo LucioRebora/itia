@@ -33,20 +33,20 @@ const ContactForm = () => {
                     >
                         <div className="glass-card p-6 flex items-start gap-4">
                             <div className="p-3 bg-secondary/10 rounded-lg">
-                                <Mail className="w-5 h-5 text-secondary-light" />
+                                <Mail className="w-5 h-5 text-secondary" />
                             </div>
                             <div>
                                 <p className="text-sm text-slate-500 uppercase">Email</p>
-                                <p className="text-white font-medium">hola@itia.dev</p>
+                                <p className="text-slate-900 font-medium">contacto@itia.ar</p>
                             </div>
                         </div>
                         <div className="glass-card p-6 flex items-start gap-4">
                             <div className="p-3 bg-primary/10 rounded-lg">
-                                <Phone className="w-5 h-5 text-primary-light" />
+                                <Phone className="w-5 h-5 text-primary" />
                             </div>
                             <div>
                                 <p className="text-sm text-slate-500 uppercase">Teléfono</p>
-                                <p className="text-white font-medium">+1 (234) 567 890</p>
+                                <p className="text-slate-900 font-medium">+54 911 6680 5053</p>
                             </div>
                         </div>
                         <div className="glass-card p-6 flex items-start gap-4">
@@ -55,7 +55,7 @@ const ContactForm = () => {
                             </div>
                             <div>
                                 <p className="text-sm text-slate-500 uppercase">Ubicación</p>
-                                <p className="text-white font-medium">Distrito Tecnológico, LATAM</p>
+                                <p className="text-slate-900 font-medium">Melian 3566</p>
                             </div>
                         </div>
                     </motion.div>

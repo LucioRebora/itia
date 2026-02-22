@@ -7,15 +7,15 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-20 border-t border-white/5 bg-dark-bg">
+        <footer className="py-20 border-t border-slate-100 bg-slate-50">
             <div className="container-custom">
                 <div className="grid md:grid-cols-4 gap-12 mb-16">
                     <div className="md:col-span-1">
                         <Link href="/" className="flex items-center gap-2 mb-6">
-                            <div className="p-2 bg-primary/20 rounded-lg">
-                                <Cpu className="w-5 h-5 text-primary-light" />
+                            <div className="p-2 bg-primary/10 rounded-lg">
+                                <Cpu className="w-5 h-5 text-primary" />
                             </div>
-                            <span className="text-xl font-bold text-white tracking-tighter">
+                            <span className="text-xl font-bold text-slate-900 font-outfit tracking-tight">
                                 ITIA
                             </span>
                         </Link>
@@ -23,44 +23,44 @@ const Footer = () => {
                             Liderando la vanguardia tecnológica mediante el desarrollo de software impulsado por IA. Soluciones inteligentes para el mundo real.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-all">
+                            <a href="#" className="p-2 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary/30 transition-all shadow-sm">
                                 <Twitter className="w-4 h-4" />
                             </a>
-                            <a href="#" className="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-all">
+                            <a href="#" className="p-2 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary/30 transition-all shadow-sm">
                                 <Linkedin className="w-4 h-4" />
                             </a>
-                            <a href="#" className="p-2 rounded-lg bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-all">
+                            <a href="#" className="p-2 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary/30 transition-all shadow-sm">
                                 <Github className="w-4 h-4" />
                             </a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-6">Empresa</h4>
+                        <h4 className="text-slate-900 font-bold mb-6">Empresa</h4>
                         <ul className="space-y-4 text-sm text-slate-500">
-                            <li><Link href="#nosotros" className="hover:text-primary-light transition-colors">Sobre nosotros</Link></li>
-                            <li><Link href="#servicios" className="hover:text-primary-light transition-colors">Servicios</Link></li>
-                            <li><Link href="#casos" className="hover:text-primary-light transition-colors">Casos de éxito</Link></li>
-                            <li><Link href="#" className="hover:text-primary-light transition-colors">Blog</Link></li>
+                            <li><Link href="#nosotros" className="hover:text-primary transition-colors">Sobre nosotros</Link></li>
+                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Servicios</Link></li>
+                            <li><Link href="#casos" className="hover:text-primary transition-colors">Casos de éxito</Link></li>
+                            <li><Link href="#" className="hover:text-primary transition-colors">Blog</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-6">Servicios</h4>
+                        <h4 className="text-slate-900 font-bold mb-6">Servicios</h4>
                         <ul className="space-y-4 text-sm text-slate-500">
-                            <li><Link href="#" className="hover:text-primary-light transition-colors">Desarrollo Web</Link></li>
-                            <li><Link href="#" className="hover:text-primary-light transition-colors">Automatización IA</Link></li>
-                            <li><Link href="#" className="hover:text-primary-light transition-colors">Asistentes Virtuales</Link></li>
-                            <li><Link href="#" className="hover:text-primary-light transition-colors">Análisis de Datos</Link></li>
+                            <li><Link href="#" className="hover:text-primary transition-colors">Desarrollo Web</Link></li>
+                            <li><Link href="#" className="hover:text-primary transition-colors">Automatización IA</Link></li>
+                            <li><Link href="#" className="hover:text-primary transition-colors">Asistentes Virtuales</Link></li>
+                            <li><Link href="#" className="hover:text-primary transition-colors">Análisis de Datos</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-white font-bold mb-6">Contacto</h4>
+                        <h4 className="text-slate-900 font-bold mb-6">Contacto</h4>
                         <ul className="space-y-4 text-sm text-slate-500">
                             <li className="flex items-center gap-2">
                                 <Mail className="w-4 h-4" />
-                                <span>hola@itia.dev</span>
+                                <span>contacto@itia.ar</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <div className="w-1 h-1 rounded-full bg-green-500" />
@@ -70,13 +70,13 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-xs text-slate-600">
+                <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-xs text-slate-400">
                         © {currentYear} ITIA. Todos los derechos reservados.
                     </p>
-                    <div className="flex gap-8 text-xs text-slate-600">
-                        <Link href="#" className="hover:text-slate-400 transition-colors">Política de Privacidad</Link>
-                        <Link href="#" className="hover:text-slate-400 transition-colors">Términos de Servicio</Link>
+                    <div className="flex gap-8 text-xs text-slate-400">
+                        <Link href="#" className="hover:text-primary transition-colors">Política de Privacidad</Link>
+                        <Link href="#" className="hover:text-primary transition-colors">Términos de Servicio</Link>
                     </div>
                 </div>
             </div>

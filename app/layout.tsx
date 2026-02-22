@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: '--font-outfit',
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -25,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${inter.className} antialiased selection:bg-primary/30 selection:text-white`}>
+      <body className={`${inter.className} ${outfit.variable} antialiased selection:bg-primary/30 selection:text-white`}>
         {children}
       </body>
     </html>

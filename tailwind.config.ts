@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        outfit: ["var(--font-outfit)", "sans-serif"],
+      },
       colors: {
         primary: {
           light: "#60a5fa", // Blue light
