@@ -21,7 +21,7 @@ const Hero = () => {
                         <span>IA Generativa & Desarrollo Moderno</span>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
-                        <span className="font-nunito font-black tracking-tight">ITIA</span> – Desarrollo de software impulsado por{" shadow-sm"}
+                        <span className="font-nunito font-black tracking-tight">ITIA</span> – Desarrollo de software impulsado por{" "}
                         <span className="text-gradient">Inteligencia Artificial</span>
                     </h1>
                     <p className="text-xl text-slate-500 mb-8 max-w-lg leading-relaxed">
