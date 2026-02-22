@@ -5,13 +5,42 @@ import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 
 const ContactForm = () => {
-    const [status, setStatus] = useState<"idle" | "success">("idle");
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        company: "",
+        message: ""
+    });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Simulate sending
-        setStatus("success");
-        setTimeout(() => setStatus("idle"), 5000);
+        setStatus("loading");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                setFormData({ name: "", email: "", company: "", message: "" });
+                setTimeout(() => setStatus("idle"), 5000);
+            } else {
+                setStatus("error");
+                setTimeout(() => setStatus("idle"), 5000);
+            }
+        } catch (error) {
+            console.error(error);
+            setStatus("error");
+            setTimeout(() => setStatus("idle"), 5000);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
     return (
@@ -74,6 +103,8 @@ const ContactForm = () => {
                                         type="text"
                                         id="name"
                                         required
+                                        value={formData.name}
+                                        onChange={handleChange}
                                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-primary/50 transition-colors"
                                         placeholder="Tu nombre completo"
                                     />
@@ -84,6 +115,8 @@ const ContactForm = () => {
                                         type="email"
                                         id="email"
                                         required
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-primary/50 transition-colors"
                                         placeholder="correo@empresa.com"
                                     />
@@ -94,6 +127,8 @@ const ContactForm = () => {
                                 <input
                                     type="text"
                                     id="company"
+                                    value={formData.company}
+                                    onChange={handleChange}
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-primary/50 transition-colors"
                                     placeholder="Nombre de tu organización"
                                 />
@@ -104,21 +139,28 @@ const ContactForm = () => {
                                     id="message"
                                     required
                                     rows={4}
+                                    value={formData.message}
+                                    onChange={handleChange}
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-primary/50 transition-colors resize-none"
                                     placeholder="Cuéntanos sobre tu proyecto..."
                                 />
                             </div>
                             <button
                                 type="submit"
-                                className="w-full btn-primary flex items-center justify-center gap-2 group"
-                                disabled={status === "success"}
+                                className="w-full btn-primary flex items-center justify-center gap-2 group disabled:opacity-70"
+                                disabled={status === "loading" || status === "success"}
                             >
-                                {status === "success" ? "¡Mensaje enviado!" : "Enviar mensaje"}
+                                {status === "loading" ? "Enviando..." : status === "success" ? "¡Mensaje enviado!" : "Enviar mensaje"}
                                 <Send className={`w-4 h-4 transition-transform ${status === "success" ? "translate-x-10 opacity-0" : "group-hover:translate-x-1"}`} />
                             </button>
                             {status === "success" && (
-                                <p className="text-center text-green-400 text-sm animate-fade-in">
-                                    Nos pondremos en contacto contigo lo antes posible.
+                                <p className="text-center text-green-600 font-medium text-sm animate-fade-in">
+                                    ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.
+                                </p>
+                            )}
+                            {status === "error" && (
+                                <p className="text-center text-red-500 font-medium text-sm animate-fade-in">
+                                    Hubo un error al enviar el mensaje. Inténtalo de nuevo.
                                 </p>
                             )}
                         </form>
