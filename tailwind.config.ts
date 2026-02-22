@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         outfit: ["var(--font-outfit)", "sans-serif"],
+        nunito: ["var(--font-nunito)", "sans-serif"],
       },
       colors: {
         primary: {

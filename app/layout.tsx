@@ -1,11 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Nunito } from "next/font/google";
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const outfit = Outfit({
   subsets: ["latin"],
   variable: '--font-outfit',
+});
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: '--font-nunito',
+  weight: ["900"],
 });
 
 export const viewport: Viewport = {
@@ -29,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${inter.className} ${outfit.variable} antialiased selection:bg-primary/30 selection:text-white`}>
+      <body className={`${inter.className} ${outfit.variable} ${nunito.variable} antialiased selection:bg-primary/30 selection:text-white`}>
         {children}
       </body>
     </html>

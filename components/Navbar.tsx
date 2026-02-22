@@ -38,7 +38,7 @@ const Navbar = () => {
                     <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                         <Cpu className="w-6 h-6 text-primary" />
                     </div>
-                    <span className="text-2xl font-bold text-slate-900 font-outfit tracking-tight">
+                    <span className="text-3xl font-black text-slate-900 font-nunito tracking-wide">
                         ITIA
                     </span>
                 </Link>

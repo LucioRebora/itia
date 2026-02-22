@@ -15,7 +15,7 @@ const Footer = () => {
                             <div className="p-2 bg-primary/10 rounded-lg">
                                 <Cpu className="w-5 h-5 text-primary" />
                             </div>
-                            <span className="text-xl font-bold text-slate-900 font-outfit tracking-tight">
+                            <span className="text-3xl font-black text-slate-900 font-nunito tracking-wide">
                                 ITIA
                             </span>
                         </Link>
