@@ -21,7 +21,7 @@ const Hero = () => {
                         <span>IA Generativa & Desarrollo Moderno</span>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
-                        ITIA – Desarrollo de software impulsado por{" "}
+                        <span className="font-nunito font-black tracking-tight">ITIA</span> – Desarrollo de software impulsado por{" shadow-sm"}
                         <span className="text-gradient">Inteligencia Artificial</span>
                     </h1>
                     <p className="text-xl text-slate-500 mb-8 max-w-lg leading-relaxed">
@@ -37,7 +37,7 @@ const Hero = () => {
                         </a>
                     </div>
 
-                    <div className="mt-12 flex items-center gap-8 grayscale opacity-70">
+                    <div className="mt-12 flex items-center gap-8 border-t border-slate-100 pt-8">
                         {/* Fake stats or logos could go here */}
                         <div className="flex flex-col">
                             <span className="text-slate-900 font-bold text-2xl">100%</span>
@@ -64,24 +64,28 @@ const Hero = () => {
                 >
                     {/* Abstract AI Visualization */}
                     <div className="relative z-10 w-full aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border border-slate-200 p-1">
-                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center mix-blend-overlay opacity-20" />
+                        <img
+                            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+                            alt="IA Visualization"
+                            className="absolute inset-0 w-full h-full object-cover opacity-40"
+                        />
                         <div className="h-full w-full flex items-center justify-center">
                             <div className="w-64 h-64 relative">
-                                <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse blur-2xl" />
-                                <div className="absolute inset-4 rounded-full border-2 border-primary/20 border-dashed animate-[spin_10s_linear_infinite]" />
-                                <div className="absolute inset-10 rounded-full border-2 border-secondary/20 border-dashed animate-[spin_6s_linear_infinite_reverse]" />
-                                <Cpu className="w-20 h-20 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                                <div className="absolute inset-0 rounded-full bg-primary/20 animate-pulse blur-3xl" />
+                                <div className="absolute inset-4 rounded-full border-2 border-primary/50 border-dashed animate-[spin_10s_linear_infinite]" />
+                                <div className="absolute inset-10 rounded-full border-2 border-secondary/50 border-dashed animate-[spin_6s_linear_infinite_reverse]" />
+                                <Cpu className="w-20 h-20 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-sm" />
                             </div>
                         </div>
                     </div>
                     {/* Cards Floating */}
-                    <div className="absolute -top-6 -right-6 glass-card p-4 animate-float">
+                    <div className="absolute -top-6 -right-6 bg-white/90 backdrop-blur-md border border-slate-200 p-4 rounded-2xl shadow-2xl animate-float z-20">
                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+                            <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
                                 <div className="w-3 h-3 rounded-full bg-primary" />
                             </div>
                             <div>
-                                <p className="text-[10px] text-slate-400 uppercase">Sistema Online</p>
+                                <p className="text-[10px] text-slate-500 uppercase font-semibold">Sistema Online</p>
                                 <p className="text-xs font-bold text-slate-900">Procesando con GPT-4</p>
                             </div>
                         </div>

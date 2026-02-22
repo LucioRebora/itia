@@ -46,7 +46,7 @@ const UseCases = () => {
                             className="glass-card overflow-hidden group border-slate-100 shadow-sm"
                         >
                             <div className="h-48 bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center relative overflow-hidden">
-                                <div className="absolute inset-0 opacity-10 group-hover:scale-110 transition-transform duration-700 bg-[url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=400')] bg-cover bg-center" />
+                                <div className="absolute inset-0 opacity-30 group-hover:scale-110 transition-transform duration-700 bg-[url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=400')] bg-cover bg-center" />
                                 <div className="z-10 p-4 bg-white/80 rounded-full border border-slate-200 text-primary">
                                     {useCase.icon}
                                 </div>
