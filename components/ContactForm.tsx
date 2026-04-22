@@ -75,7 +75,7 @@ const ContactForm = () => {
                             </div>
                             <div>
                                 <p className="text-sm text-slate-500 uppercase">Teléfono</p>
-                                <p className="text-slate-900 font-medium">+54 911 6680 5053</p>
+                                <a href="tel:+5491161357314" className="text-slate-900 font-medium hover:text-primary transition-colors">+54 9 11 6135-7314</a>
                             </div>
                         </div>
                         <div className="glass-card p-6 flex items-start gap-4">

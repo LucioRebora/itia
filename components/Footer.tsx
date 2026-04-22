@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Cpu, Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Cpu, Github, Twitter, Linkedin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -60,7 +60,11 @@ const Footer = () => {
                         <ul className="space-y-4 text-sm text-slate-500">
                             <li className="flex items-center gap-2">
                                 <Mail className="w-4 h-4" />
-                                <span>contacto@itia.ar</span>
+                                <a href="mailto:contacto@itia.ar" className="hover:text-primary transition-colors">contacto@itia.ar</a>
+                            </li>
+                            <li className="flex items-center gap-2">
+                                <Phone className="w-4 h-4" />
+                                <a href="tel:+5491161357314" className="hover:text-primary transition-colors">+54 9 11 6135-7314</a>
                             </li>
                             <li className="flex items-center gap-2">
                                 <div className="w-1 h-1 rounded-full bg-green-500" />
