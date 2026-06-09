@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Cpu } from "lucide-react";
+import { ArrowRight, Sparkles, Cpu, Bot, Mail, CheckCircle2, Zap, ArrowRightCircle } from "lucide-react";
 
 const Hero = () => {
     return (
@@ -57,37 +57,100 @@ const Hero = () => {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative hidden lg:block"
+                    className="relative hidden lg:flex flex-col gap-6 justify-center items-center h-[520px] font-sans"
                 >
-                    {/* Abstract AI Visualization */}
-                    <div className="relative z-10 w-full aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border border-slate-200 p-1">
-                        <img
-                            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
-                            alt="IA Visualization"
-                            className="absolute inset-0 w-full h-full object-cover opacity-40"
-                        />
-                        <div className="h-full w-full flex items-center justify-center">
-                            <div className="w-64 h-64 relative">
-                                <div className="absolute inset-0 rounded-full bg-primary/20 animate-pulse blur-3xl" />
-                                <div className="absolute inset-4 rounded-full border-2 border-primary/50 border-dashed animate-[spin_10s_linear_infinite]" />
-                                <div className="absolute inset-10 rounded-full border-2 border-secondary/50 border-dashed animate-[spin_6s_linear_infinite_reverse]" />
-                                <Cpu className="w-20 h-20 text-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-sm" />
-                            </div>
+                    {/* Glowing background */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-secondary/5 to-transparent rounded-3xl filter blur-2xl -z-10" />
+
+                    {/* Step 1: Input Trigger (Top) */}
+                    <motion.div 
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-lg w-72 flex items-center gap-3 relative z-10"
+                    >
+                        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                            <Mail className="w-5 h-5" />
                         </div>
-                    </div>
-                    {/* Cards Floating */}
-                    <div className="absolute -top-6 -right-6 bg-white/90 backdrop-blur-md border border-slate-200 p-4 rounded-2xl shadow-2xl animate-float z-20">
-                        <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
-                                <div className="w-3 h-3 rounded-full bg-primary" />
+                        <div className="flex-grow">
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">1. Entrada de Cliente</span>
+                            <p className="text-[11px] font-semibold text-slate-800 leading-tight">Consulta de cotización recibida</p>
+                        </div>
+                        <Zap className="w-4 h-4 text-amber-500 animate-pulse flex-shrink-0" />
+                    </motion.div>
+
+                    {/* Connecting Line 1 */}
+                    <div className="w-0.5 h-8 bg-slate-200 border-dashed border-r-2 border-slate-300 relative z-0" />
+
+                    {/* Step 2: AI Agent reasoning (Center) */}
+                    <motion.div 
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.6 }}
+                        className="bg-slate-900 text-white border border-slate-800 p-5 rounded-2xl shadow-2xl w-80 relative z-10 hover:border-primary/50 transition-colors duration-300"
+                    >
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary-light flex-shrink-0">
+                                <Bot className="w-6 h-6 animate-pulse" />
                             </div>
                             <div>
-                                <p className="text-[10px] text-slate-500 uppercase font-semibold">Sistema Online</p>
-                                <p className="text-xs font-bold text-slate-900">Procesando con GPT-4</p>
+                                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">2. Procesamiento Inteligente</span>
+                                <h4 className="text-xs font-black text-white">Agente de Decisión Autónomo</h4>
                             </div>
+                        </div>
+                        <div className="space-y-2.5 text-[11px]">
+                            <div className="flex items-center gap-2 text-slate-300">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                                <span>Verificación de stock y viabilidad</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-slate-300">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                                <span>Generación de propuesta PDF</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-slate-300">
+                                <div className="w-4 h-4 rounded-full border border-dashed border-primary animate-spin flex-shrink-0" />
+                                <span className="text-primary-light font-medium">Enviando respuesta personalizada...</span>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Connecting Line 2 */}
+                    <div className="w-0.5 h-8 bg-slate-200 border-dashed border-r-2 border-slate-300 relative z-0" />
+
+                    {/* Step 3: Automated Action / Success (Bottom) */}
+                    <motion.div 
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-lg w-72 flex items-center gap-3 relative z-10"
+                    >
+                        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                            <CheckCircle2 className="w-5 h-5" />
+                        </div>
+                        <div className="flex-grow">
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">3. Acción Completada</span>
+                            <p className="text-[11px] font-semibold text-slate-800 leading-tight">Propuesta enviada y CRM actualizado</p>
+                        </div>
+                        <ArrowRightCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+                    </motion.div>
+
+                    {/* Floating Statistics Badge */}
+                    <div className="absolute top-10 right-4 bg-white border border-slate-200/80 p-3 rounded-xl shadow-md z-20 flex items-center gap-2.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+                        <div className="leading-none">
+                            <p className="text-[8px] font-bold text-slate-400 uppercase">Velocidad</p>
+                            <p className="text-xs font-black text-slate-800">&lt; 1 minuto</p>
+                        </div>
+                    </div>
+
+                    {/* Floating Volume Badge */}
+                    <div className="absolute bottom-12 left-4 bg-slate-900 text-white border border-slate-800 p-3 rounded-xl shadow-xl z-20 flex items-center gap-2.5">
+                        <div className="leading-none">
+                            <p className="text-[8px] font-bold text-slate-500 uppercase">Eficiencia</p>
+                            <p className="text-xs font-black text-emerald-400">99.9% Autónomo</p>
                         </div>
                     </div>
                 </motion.div>
