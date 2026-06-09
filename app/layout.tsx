@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   keywords: ["IA", "Inteligencia Artificial", "Desarrollo de Software", "Next.js", "Automatización", "ITIA"],
   authors: [{ name: "ITIA Dev Team" }],
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 

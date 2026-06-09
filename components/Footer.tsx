@@ -11,13 +11,8 @@ const Footer = () => {
             <div className="container-custom">
                 <div className="grid md:grid-cols-4 gap-12 mb-16">
                     <div className="md:col-span-1">
-                        <Link href="/" className="flex items-center gap-2 mb-6">
-                            <div className="p-2 bg-primary/10 rounded-lg">
-                                <Cpu className="w-5 h-5 text-primary" />
-                            </div>
-                            <span className="text-3xl font-black text-slate-900 font-nunito tracking-wide">
-                                ITIA
-                            </span>
+                        <Link href="/" className="flex items-center mb-6">
+                            <img src="/img/logoitia.png" alt="ITIA Logo" className="h-24 w-auto object-contain" />
                         </Link>
                         <p className="text-sm text-slate-500 leading-relaxed mb-6">
                             Liderando la vanguardia tecnológica mediante el desarrollo de software impulsado por IA. Soluciones inteligentes para el mundo real.
