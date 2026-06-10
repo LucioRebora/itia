@@ -5,7 +5,7 @@ import { ArrowRight, Sparkles, Cpu, Bot, Mail, CheckCircle2, Zap, ArrowRightCirc
 
 const Hero = () => {
     return (
-        <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <section className="relative min-h-screen flex items-center pt-36 md:pt-40 pb-12 overflow-hidden">
             {/* Background Orbs */}
             <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10 animate-float" />
             <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] -z-10 animate-float" style={{ animationDelay: "1s" }} />
