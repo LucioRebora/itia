@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Inter, Outfit, Nunito } from "next/font/google";
 import "@/styles/globals.css";
+import ChatWidget from "@/components/ChatWidget";
 
 const inter = Inter({ subsets: ["latin"] });
 const outfit = Outfit({
@@ -57,6 +58,7 @@ export default function RootLayout({
           />
         </noscript>
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
