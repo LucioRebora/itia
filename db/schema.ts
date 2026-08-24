@@ -10,3 +10,11 @@ export const contacts = pgTable("contacts", {
     source: text("source").default("contact_form").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const chatMessages = pgTable("chat_messages", {
+    id: serial("id").primaryKey(),
+    sessionId: text("session_id").notNull(),
+    role: text("role").notNull(),
+    content: text("content").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+});

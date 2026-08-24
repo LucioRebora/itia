@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { anthropic, CHAT_MODEL } from "@/lib/anthropic";
 import { db } from "@/db";
-import { contacts } from "@/db/schema";
+import { contacts, chatMessages } from "@/db/schema";
 import { sendLeadEmail } from "@/lib/leadMailer";
 
 const SYSTEM_PROMPT = `Sos el asistente virtual de ITIA, una empresa de desarrollo de software impulsado por IA (sitio web en el que estás integrado).
@@ -48,10 +48,21 @@ type ChatMessage = { role: "user" | "assistant"; content: string };
 
 export async function POST(req: Request) {
     try {
-        const { messages }: { messages: ChatMessage[] } = await req.json();
+        const body: { messages: ChatMessage[]; sessionId?: string } = await req.json();
+        const { messages } = body;
+        const sessionId = body.sessionId || crypto.randomUUID();
 
         if (!Array.isArray(messages) || messages.length === 0) {
             return NextResponse.json({ error: "Mensajes inválidos" }, { status: 400 });
+        }
+
+        const lastMessage = messages[messages.length - 1];
+        if (lastMessage.role === "user") {
+            await db.insert(chatMessages).values({
+                sessionId,
+                role: "user",
+                content: lastMessage.content,
+            });
         }
 
         const conversation: Anthropic.MessageParam[] = messages.map((m) => ({
@@ -60,6 +71,15 @@ export async function POST(req: Request) {
         }));
 
         let leadCaptured = false;
+
+        const replyAndSave = async (reply: string) => {
+            await db.insert(chatMessages).values({
+                sessionId,
+                role: "assistant",
+                content: reply,
+            });
+            return NextResponse.json({ reply, leadCaptured, sessionId });
+        };
 
         for (let iteration = 0; iteration < 3; iteration++) {
             const response = await anthropic.messages.create({
@@ -71,10 +91,9 @@ export async function POST(req: Request) {
             });
 
             if (response.stop_reason === "refusal") {
-                return NextResponse.json({
-                    reply: "Perdón, no puedo ayudarte con eso. ¿Querés contarme sobre tu proyecto de software?",
-                    leadCaptured,
-                });
+                return replyAndSave(
+                    "Perdón, no puedo ayudarte con eso. ¿Querés contarme sobre tu proyecto de software?",
+                );
             }
 
             const toolUses = response.content.filter(
@@ -88,10 +107,7 @@ export async function POST(req: Request) {
                     .join("\n")
                     .trim();
 
-                return NextResponse.json({
-                    reply: text || "¿Podés contarme un poco más sobre tu proyecto?",
-                    leadCaptured,
-                });
+                return replyAndSave(text || "¿Podés contarme un poco más sobre tu proyecto?");
             }
 
             conversation.push({ role: "assistant", content: response.content });
@@ -146,10 +162,9 @@ export async function POST(req: Request) {
             conversation.push({ role: "user", content: toolResults });
         }
 
-        return NextResponse.json({
-            reply: "¡Gracias! Ya tengo tus datos, el equipo de ITIA se va a contactar pronto.",
-            leadCaptured,
-        });
+        return replyAndSave(
+            "¡Gracias! Ya tengo tus datos, el equipo de ITIA se va a contactar pronto.",
+        );
     } catch (error) {
         console.error("Error en /api/chat:", error);
         return NextResponse.json(

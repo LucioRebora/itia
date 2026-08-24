@@ -18,6 +18,7 @@ const ChatWidget = () => {
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const sessionIdRef = useRef<string>(crypto.randomUUID());
 
     useEffect(() => {
         scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -37,7 +38,7 @@ const ChatWidget = () => {
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ messages: nextMessages }),
+                body: JSON.stringify({ messages: nextMessages, sessionId: sessionIdRef.current }),
             });
 
             if (!response.ok) throw new Error("Error en la respuesta");
