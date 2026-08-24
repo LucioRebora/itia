@@ -13,7 +13,7 @@ const WELCOME_MESSAGE: ChatMessage = {
 };
 
 const ChatWidget = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
