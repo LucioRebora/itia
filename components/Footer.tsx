@@ -41,12 +41,14 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-slate-900 font-bold mb-6">Servicios</h4>
-                        <ul className="space-y-4 text-sm text-slate-500">
-                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Desarrollo Web & Apps</Link></li>
-                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Automatización Empresarial con IA</Link></li>
-                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Desarrollo de Sistemas a Medida</Link></li>
-                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Software a Medida</Link></li>
+                        <h4 className="text-slate-900 font-bold mb-6">Soluciones SEO</h4>
+                        <ul className="space-y-3 text-sm text-slate-500">
+                            <li><Link href="/desarrollo-software" className="hover:text-primary transition-colors">Desarrollo de Software</Link></li>
+                            <li><Link href="/desarrollo-web" className="hover:text-primary transition-colors">Desarrollo Web</Link></li>
+                            <li><Link href="/software-a-medida" className="hover:text-primary transition-colors">Software a Medida</Link></li>
+                            <li><Link href="/automatizacion-ia" className="hover:text-primary transition-colors">Automatización con IA</Link></li>
+                            <li><Link href="/inteligencia-artificial" className="hover:text-primary transition-colors">Inteligencia Artificial</Link></li>
+                            <li><Link href="/desarrollo-aplicaciones" className="hover:text-primary transition-colors">Desarrollo de Aplicaciones</Link></li>
                         </ul>
                     </div>
 

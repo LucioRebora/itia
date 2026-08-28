@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Benefits from "@/components/Benefits";
 import Services from "@/components/Services";
+import SeoContentSection from "@/components/SeoContentSection";
 import Process from "@/components/Process";
 import About from "@/components/About";
 import TechStack from "@/components/TechStack";
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <Benefits />
       <Services />
+      <SeoContentSection />
       <Process />
       <About />
       <TechStack />
