@@ -18,14 +18,14 @@ const Hero = () => {
                 >
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-primary text-xs font-semibold mb-6">
                         <Sparkles className="w-3 h-3" />
-                        <span>IA Generativa & Desarrollo Moderno</span>
+                        <span>Desarrollo de Software Argentina & IA Generativa</span>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
-                        <span className="font-nunito font-black tracking-tight">ITIA</span> – Desarrollo de software impulsado por{" "}
-                        <span className="text-gradient">Inteligencia Artificial</span>
+                        Empresa de <span className="font-nunito font-black tracking-tight">Desarrollo de Software</span> &{" "}
+                        <span className="text-gradient">Soluciones con IA</span>
                     </h1>
                     <p className="text-xl text-slate-500 mb-8 max-w-lg leading-relaxed">
-                        Creamos soluciones digitales rápidas, escalables y eficientes usando los modelos de IA más avanzados para potenciar tu negocio.
+                        Creamos software a medida, desarrollo de aplicaciones web y automatización empresarial con IA para transformar y escalar tu negocio.
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <a href="#contacto" className="btn-primary flex items-center gap-2 group">

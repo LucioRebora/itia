@@ -14,12 +14,12 @@ const About = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl md:text-5xl mb-8">Sobre ITIA</h2>
+                    <h2 className="text-3xl md:text-5xl mb-8">Empresa de Desarrollo de Software</h2>
                     <div className="space-y-6">
                         <div>
                             <h3 className="text-xl font-bold text-primary mb-2">Quiénes somos</h3>
                             <p className="text-slate-600 leading-relaxed">
-                                Somos un equipo de ingenieros y entusiastas de la IA dedicados a transformar la manera en que las empresas interactúan con la tecnología. Nuestra pasión es construir puentes entre el presente y el futuro digital.
+                                Somos una empresa de desarrollo de software en Argentina especializada en la creación de software a medida, desarrollo de sistemas empresariales y soluciones impulsadas por inteligencia artificial.
                             </p>
                         </div>
                         <div className="grid md:grid-cols-2 gap-6">

@@ -15,7 +15,7 @@ const Footer = () => {
                             <img src="/img/logoitia.png" alt="ITIA Logo" className="h-24 w-auto object-contain" />
                         </Link>
                         <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                            Liderando la vanguardia tecnológica mediante el desarrollo de software impulsado por IA. Soluciones inteligentes para el mundo real.
+                            Empresa de desarrollo de software en Argentina. Creamos software a medida, desarrollo de sistemas, aplicaciones web y automatización empresarial con IA.
                         </p>
                         <div className="flex gap-4">
                             <a href="#" className="p-2 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary/30 transition-all shadow-sm">
@@ -36,17 +36,17 @@ const Footer = () => {
                             <li><Link href="#nosotros" className="hover:text-primary transition-colors">Sobre nosotros</Link></li>
                             <li><Link href="#servicios" className="hover:text-primary transition-colors">Servicios</Link></li>
                             <li><Link href="#casos" className="hover:text-primary transition-colors">Casos de éxito</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-colors">Blog</Link></li>
+                            <li><Link href="#contacto" className="hover:text-primary transition-colors">Contacto</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 className="text-slate-900 font-bold mb-6">Servicios</h4>
                         <ul className="space-y-4 text-sm text-slate-500">
-                            <li><Link href="#" className="hover:text-primary transition-colors">Desarrollo Web</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-colors">Automatización IA</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-colors">Asistentes Virtuales</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-colors">Análisis de Datos</Link></li>
+                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Desarrollo Web & Apps</Link></li>
+                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Automatización Empresarial con IA</Link></li>
+                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Desarrollo de Sistemas a Medida</Link></li>
+                            <li><Link href="#servicios" className="hover:text-primary transition-colors">Software a Medida</Link></li>
                         </ul>
                     </div>
 

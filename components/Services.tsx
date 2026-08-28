@@ -6,33 +6,33 @@ import { Code2, Cpu, Share2, MessageSquare, BarChart3, Rocket } from "lucide-rea
 const services = [
     {
         icon: <Code2 className="w-8 h-8 text-primary-light" />,
-        title: "Desarrollo Web",
-        description: "Sitios y aplicaciones modernas usando Next.js, React y APIs escalables de alto rendimiento.",
+        title: "Desarrollo Web & Aplicaciones",
+        description: "Somos una empresa de desarrollo web especializada en aplicaciones modernas con Next.js, React y APIs de alto rendimiento.",
     },
     {
         icon: <Cpu className="w-8 h-8 text-secondary-light" />,
-        title: "Automatización con IA",
-        description: "Flujos de trabajo impulsados por agentes inteligentes que ejecutan tareas complejas.",
+        title: "Automatización Empresarial con IA",
+        description: "Optimizamos procesos clave mediante desarrollo de software con IA y agentes autónomos para potenciar la productividad.",
     },
     {
         icon: <Share2 className="w-8 h-8 text-accent" />,
-        title: "Integración de Sistemas",
-        description: "Conectamos todas tus herramientas para que la información fluya sin interrupciones.",
+        title: "Desarrollo de Sistemas a Medida",
+        description: "Diseñamos y construimos sistemas empresariales adaptados 100% a la lógica operativa y requerimientos de tu empresa.",
     },
     {
         icon: <MessageSquare className="w-8 h-8 text-primary-light" />,
-        title: "Bots y Asistentes",
-        description: "Interfaces conversacionales avanzadas con GPT-4 para soporte y ventas 24/7.",
+        title: "Bots y Asistentes Virtuales",
+        description: "Interfaces conversacionales avanzadas integradas a tus sistemas para atención al cliente y soporte 24/7.",
     },
     {
         icon: <BarChart3 className="w-8 h-8 text-secondary-light" />,
-        title: "Análisis de Datos",
-        description: "Transformamos datos crudos en conocimiento accionable mediante modelos predictivos.",
+        title: "Análisis de Datos con IA",
+        description: "Transformamos información en dashboards ejecutivos y modelos predictivos para la toma de decisiones estratégicas.",
     },
     {
         icon: <Rocket className="w-8 h-8 text-accent" />,
-        title: "MVPs para Startups",
-        description: "Lanzamos tu idea al mercado en tiempo récord manteniendo la calidad de un producto final.",
+        title: "MVPs & Software a Medida",
+        description: "Lanzamos productos digitales y soluciones de software rápido al mercado en tiempo récord manteniendo la máxima calidad.",
     },
 ];
 
@@ -41,9 +41,9 @@ const Services = () => {
         <section id="servicios" className="py-24 bg-dark-bg/50">
             <div className="container-custom">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl mb-4">Nuestros Servicios</h2>
+                    <h2 className="text-3xl md:text-5xl mb-4">Servicios de Desarrollo de Software y Sistemas</h2>
                     <p className="text-slate-400 max-w-2xl mx-auto">
-                        Ofrecemos un abanico completo de soluciones tecnológicas diseñadas para la era de la inteligencia artificial.
+                        Como empresa de desarrollo de software en Argentina, ofrecemos soluciones integrales en aplicaciones web, sistemas a medida e IA.
                     </p>
                 </div>
 
