@@ -36,14 +36,22 @@ export async function POST(req: Request) {
         const company = readOptionalText(input.company, 120);
 
         if (!name || !message || !isValidEmail(input.email)) {
+            console.warn("[Contact API] Datos de formulario inválidos:", {
+                hasName: Boolean(name),
+                hasMessage: Boolean(message),
+                emailProvided: input.email,
+                isValidEmail: isValidEmail(input.email),
+            });
             return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
         }
 
-        await sendContactEmail({ name, email: input.email, company, message });
+        console.log("[Contact API] Procesando envío de contacto para email:", input.email);
+        await sendContactEmail({ name, email: input.email as string, company, message });
+        console.log("[Contact API] Contacto procesado con éxito para:", input.email);
 
         return NextResponse.json({ ok: true });
     } catch (error) {
-        console.error("Error enviando email de contacto:", error instanceof Error ? error.message : String(error));
+        console.error("[Contact API] Error enviando email de contacto:", error);
         return NextResponse.json(
             { error: "Error al enviar el mensaje" },
             { status: 500 }

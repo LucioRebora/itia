@@ -74,17 +74,23 @@ async function send(options: {
     subject: string;
     html: string;
 }) {
-    const { error } = await getClient().emails.send({
-        from: from(),
-        to: to(),
+    const fromAddr = from();
+    const toAddr = to();
+    console.log(`[leadMailer] Enviando email via Resend... From: "${fromAddr}", To: "${toAddr}", ReplyTo: "${options.replyTo}"`);
+    const { data, error } = await getClient().emails.send({
+        from: fromAddr,
+        to: toAddr,
         replyTo: options.replyTo,
         subject: options.subject,
         html: options.html,
     });
 
     if (error) {
+        console.error("[leadMailer] Resend rechazó el envío:", JSON.stringify(error, null, 2));
         throw new Error(`Resend rechazó el envío: ${error.name} - ${error.message}`);
     }
+
+    console.log("[leadMailer] Email enviado exitosamente via Resend. ID:", data?.id);
 }
 
 const DISCLAIMER =
