@@ -18,7 +18,6 @@ const ChatWidget = () => {
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
-    const sessionIdRef = useRef<string>(crypto.randomUUID());
 
     useEffect(() => {
         scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -29,16 +28,17 @@ const ChatWidget = () => {
         const text = input.trim();
         if (!text || isLoading) return;
 
-        const nextMessages = [...messages, { role: "user" as const, content: text }];
-        setMessages(nextMessages);
+        setMessages((prev) => [...prev, { role: "user" as const, content: text }]);
         setInput("");
         setIsLoading(true);
 
         try {
+            // Sólo se manda el mensaje nuevo: el historial lo lleva el servidor,
+            // asociado a la cookie de sesión.
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ messages: nextMessages, sessionId: sessionIdRef.current }),
+                body: JSON.stringify({ message: text }),
             });
 
             if (!response.ok) throw new Error("Error en la respuesta");
@@ -128,6 +128,7 @@ const ChatWidget = () => {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Escribí tu mensaje..."
+                                maxLength={2000}
                                 className="flex-1 bg-slate-50 border border-slate-200 rounded-full px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-primary/50 transition-colors"
                                 disabled={isLoading}
                             />

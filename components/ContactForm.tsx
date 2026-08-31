@@ -102,6 +102,7 @@ const ContactForm = () => {
                                     <input
                                         type="text"
                                         id="name"
+                                        maxLength={80}
                                         required
                                         value={formData.name}
                                         onChange={handleChange}
@@ -114,6 +115,7 @@ const ContactForm = () => {
                                     <input
                                         type="email"
                                         id="email"
+                                        maxLength={254}
                                         required
                                         value={formData.email}
                                         onChange={handleChange}
@@ -127,6 +129,7 @@ const ContactForm = () => {
                                 <input
                                     type="text"
                                     id="company"
+                                    maxLength={120}
                                     value={formData.company}
                                     onChange={handleChange}
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-primary/50 transition-colors"
@@ -137,6 +140,7 @@ const ContactForm = () => {
                                 <label htmlFor="message" className="text-sm text-slate-400 ml-1">Mensaje</label>
                                 <textarea
                                     id="message"
+                                    maxLength={4000}
                                     required
                                     rows={4}
                                     value={formData.message}
