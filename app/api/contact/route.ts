@@ -43,10 +43,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ ok: true });
     } catch (error) {
-        // Sin detalles del error ni datos del formulario: los logs del hosting
-        // no son el lugar para PII.
-        console.error("Error enviando email de contacto");
-        if (process.env.NODE_ENV !== "production") console.error(error);
+        console.error("Error enviando email de contacto:", error instanceof Error ? error.message : String(error));
         return NextResponse.json(
             { error: "Error al enviar el mensaje" },
             { status: 500 }

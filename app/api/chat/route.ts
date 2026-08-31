@@ -284,9 +284,7 @@ export async function POST(req: Request) {
                         content: "Lead guardado y equipo notificado correctamente.",
                     });
                 } catch (err) {
-                    // Sin volcar los datos del lead a los logs del hosting.
-                    console.error("Error guardando lead");
-                    if (process.env.NODE_ENV !== "production") console.error(err);
+                    console.error("Error guardando lead:", err instanceof Error ? err.message : String(err));
                     toolResults.push({
                         type: "tool_result",
                         tool_use_id: toolUse.id,
