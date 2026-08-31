@@ -1,34 +1,10 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import {
-    escapeHtml,
-    isValidEmail,
-    readOptionalText,
-    readText,
-    sanitizeHeader,
-} from "@/lib/validation";
+import { isValidEmail, readOptionalText, readText } from "@/lib/validation";
 import { clientKey, rateLimit, tooManyRequests } from "@/lib/rateLimit";
+import { sendContactEmail } from "@/lib/leadMailer";
 
 // Tope de tamaño del body: sin esto se puede mandar un JSON de cientos de MB.
 const MAX_BODY_BYTES = 16 * 1024;
-
-let transporter: nodemailer.Transporter | undefined;
-
-function getTransporter() {
-    if (!transporter) {
-        if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-            throw new Error("EMAIL_USER / EMAIL_PASS no están definidas en el entorno");
-        }
-        transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
-            },
-        });
-    }
-    return transporter;
-}
 
 export async function POST(req: Request) {
     // 3 envíos cada 10 minutos por IP: suficiente para un humano, inútil para un bot.
@@ -62,28 +38,8 @@ export async function POST(req: Request) {
         if (!name || !message || !isValidEmail(input.email)) {
             return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
         }
-        const email = input.email;
 
-        await getTransporter().sendMail({
-            from: `"ITIA - Notificaciones Web" <${process.env.EMAIL_USER}>`,
-            to: process.env.EMAIL_USER,
-            replyTo: sanitizeHeader(email, 254),
-            subject: `📩 [WEB ITIA] Nuevo contacto: ${sanitizeHeader(name, 80)}`,
-            html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
-          <h2 style="color: #2563eb; margin-bottom: 20px;">Nuevo contacto desde la web</h2>
-          <p style="margin-bottom: 10px;"><b>Nombre:</b> ${escapeHtml(name)}</p>
-          <p style="margin-bottom: 10px;"><b>Email:</b> ${escapeHtml(email)}</p>
-          <p style="margin-bottom: 10px;"><b>Empresa:</b> ${escapeHtml(company || "No especificada")}</p>
-          <div style="margin-top: 20px; padding: 15px; background-color: #f8fafc; border-radius: 8px;">
-            <p style="margin-bottom: 5px;"><b>Mensaje:</b></p>
-            <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
-          </div>
-          <hr style="margin-top: 30px; border: none; border-top: 1px solid #e2e8f0;" />
-          <p style="font-size: 12px; color: #64748b; text-align: center;">Mensaje automático del formulario de ITIA. Los datos los cargó el visitante: verificalos antes de confiar en ellos.</p>
-        </div>
-      `,
-        });
+        await sendContactEmail({ name, email: input.email, company, message });
 
         return NextResponse.json({ ok: true });
     } catch (error) {
