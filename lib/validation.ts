@@ -29,7 +29,7 @@ export function isValidEmail(value: unknown): value is string {
     return (
         typeof value === "string" &&
         value.length <= 254 &&
-        /^[^\s@,;:<>"'\]+@[^\s@,;:<>"'\]+\.[a-zA-Z]{2,}$/.test(value)
+        /^[^\s@,;:<>"'\]]+@[^\s@,;:<>"'\]]+\.[a-zA-Z]{2,}$/.test(value)
     );
 }
 

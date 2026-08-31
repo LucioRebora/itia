@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const ContactForm = () => {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState<string>("");
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -16,6 +17,7 @@ const ContactForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("loading");
+        setErrorMessage("");
 
         try {
             const response = await fetch("/api/contact", {
@@ -24,16 +26,20 @@ const ContactForm = () => {
                 body: JSON.stringify(formData),
             });
 
+            const data = await response.json().catch(() => ({}));
+
             if (response.ok) {
                 setStatus("success");
                 setFormData({ name: "", email: "", company: "", message: "" });
                 setTimeout(() => setStatus("idle"), 5000);
             } else {
+                setErrorMessage(data.error || "Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
                 setStatus("error");
                 setTimeout(() => setStatus("idle"), 5000);
             }
         } catch (error) {
             console.error(error);
+            setErrorMessage("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
             setStatus("error");
             setTimeout(() => setStatus("idle"), 5000);
         }
@@ -164,7 +170,7 @@ const ContactForm = () => {
                             )}
                             {status === "error" && (
                                 <p className="text-center text-red-500 font-medium text-sm animate-fade-in">
-                                    Hubo un error al enviar el mensaje. Inténtalo de nuevo.
+                                    {errorMessage || "Hubo un error al enviar el mensaje. Inténtalo de nuevo."}
                                 </p>
                             )}
                         </form>
