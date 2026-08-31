@@ -5,10 +5,11 @@ let client: Resend | undefined;
 
 function getClient() {
     if (!client) {
-        if (!process.env.RESEND_KEY) {
-            throw new Error("RESEND_KEY no está definida en el entorno");
+        const apiKey = process.env.RESEND_API_KEY || process.env.RESEND_KEY;
+        if (!apiKey) {
+            throw new Error("Ni RESEND_API_KEY ni RESEND_KEY están definidas en las variables de entorno");
         }
-        client = new Resend(process.env.RESEND_KEY);
+        client = new Resend(apiKey);
     }
     return client;
 }
