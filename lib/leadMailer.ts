@@ -117,7 +117,7 @@ export async function sendLeadEmail(lead: {
             ],
             bodyLabel: "Necesidad",
             body: lead.message,
-            footer: `Lead capturado automáticamente por el asistente virtual de ITIA. ${DISCLAIMER}`,
+            footer: `Lead capturado automáticamente por Tiana, la asistente IA de ITIA. ${DISCLAIMER}`,
         }),
     });
 }

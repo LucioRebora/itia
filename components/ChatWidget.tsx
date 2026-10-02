@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot } from "lucide-react";
+import { MessageCircle, X, Send } from "lucide-react";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
 const WELCOME_MESSAGE: ChatMessage = {
     role: "assistant",
     content:
-        "¡Hola! 👋 Soy el asistente de ITIA. Ayudamos a llevar adelante proyectos de software, desde soluciones simples hasta sistemas complejos, y solemos armar un MVP gratuito para validar tu idea. ¿Contame, qué proyecto tenés en mente?",
+        "¡Hola! 👋 Soy Tiana, la asistente IA de ITIA. Ayudamos a llevar adelante proyectos de software, desde soluciones simples hasta sistemas complejos, y solemos armar un MVP gratuito para validar tu idea. ¿Contame, qué proyecto tenés en mente?",
 };
 
 const ChatWidget = () => {
@@ -99,11 +99,15 @@ const ChatWidget = () => {
                         className="fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] max-w-sm h-[70vh] max-h-[560px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden"
                     >
                         <div className="bg-primary px-5 py-4 flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center">
-                                <Bot className="w-5 h-5 text-white" />
-                            </div>
+                            <img
+                                src="/img/asist-avatar.jpg"
+                                alt="Tiana, asistente IA de ITIA"
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 rounded-full object-cover ring-2 ring-white/40"
+                            />
                             <div>
-                                <p className="text-white font-medium leading-tight">Asistente ITIA</p>
+                                <p className="text-white font-medium leading-tight">Tiana · Asistente IA</p>
                                 <p className="text-white/70 text-xs">Te respondemos al instante</p>
                             </div>
                         </div>
