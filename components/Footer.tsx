@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Cpu, Github, Twitter, Linkedin, Mail, Phone } from "lucide-react";
+import { Cpu, Github, Twitter, Linkedin, Mail, Phone, UserRound } from "lucide-react";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -27,6 +27,9 @@ const Footer = () => {
                             <a href="#" className="p-2 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary/30 transition-all shadow-sm">
                                 <Github className="w-4 h-4" />
                             </a>
+                            <Link href="/dashboard" aria-label="Dashboard" className="p-2 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary hover:border-primary/30 transition-all shadow-sm">
+                                <UserRound className="w-4 h-4" />
+                            </Link>
                         </div>
                     </div>
 

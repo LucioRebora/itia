@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot } from "lucide-react";
 
@@ -13,6 +14,7 @@ const WELCOME_MESSAGE: ChatMessage = {
 };
 
 const ChatWidget = () => {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(true);
     const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE]);
     const [input, setInput] = useState("");
@@ -59,6 +61,9 @@ const ChatWidget = () => {
             setIsLoading(false);
         }
     };
+
+    // En el dashboard el chat sólo estorba (y abriría sesiones falsas).
+    if (pathname.startsWith("/dashboard")) return null;
 
     return (
         <>
