@@ -11,8 +11,8 @@ const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
     isDev ? "'unsafe-eval'" : null,
-    "https://www.googletagmanager.com",
-    "https://www.google-analytics.com",
+    "https://*.googletagmanager.com",
+    "https://*.google-analytics.com",
 ]
     .filter(Boolean)
     .join(" ");
@@ -35,8 +35,10 @@ const securityHeaders = [
             `script-src ${scriptSrc}`,
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "font-src 'self' https://fonts.gstatic.com data:",
-            "img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com",
-            "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+            // GA4 manda los hits a subdominios regionales (region1.google-analytics.com,
+            // *.analytics.google.com), no sólo a www.
+            "img-src 'self' data: https://images.unsplash.com https://*.googletagmanager.com https://*.google-analytics.com",
+            "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
             "frame-ancestors 'none'",
             "base-uri 'self'",
             "form-action 'self'",
