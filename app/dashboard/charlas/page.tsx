@@ -22,6 +22,10 @@ export default async function CharlasPage({
     const page = Math.max(1, Number.parseInt(pageParam ?? "1", 10) || 1);
 
     const lastAt = sql<Date>`max(${chatMessages.createdAt})`;
+    // Drizzle renderiza las columnas sin tabla dentro de sql``, y en una
+    // subconsulta "session_id" se resolvería contra la tabla interna. Hay que
+    // calificarla a mano para correlacionar con la fila de afuera.
+    const outerSession = sql.raw(`"chat_messages"."session_id"`);
 
     const [sessions, [{ total }]] = await Promise.all([
         db
@@ -32,12 +36,12 @@ export default async function CharlasPage({
                 // Primer mensaje del visitante, para tener una idea de qué trata la charla.
                 preview: sql<string | null>`(
                     select m.content from chat_messages m
-                    where m.session_id = ${chatMessages.sessionId} and m.role = 'user'
+                    where m.session_id = ${outerSession} and m.role = 'user'
                     order by m.id limit 1
                 )`,
                 leadName: sql<string | null>`(
                     select c.name from contacts c
-                    where c.session_id = ${chatMessages.sessionId}
+                    where c.session_id = ${outerSession}
                     order by c.id desc limit 1
                 )`,
             })
