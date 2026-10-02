@@ -16,10 +16,19 @@ Sobre ITIA:
 - Como primer paso, solemos armar un MVP (producto mínimo viable) del proyecto del cliente, generalmente sin costo, para validar la idea antes de avanzar con un desarrollo más grande.
 
 Tu objetivo en esta charla:
-1. Entender en pocas preguntas qué necesita la persona (qué tipo de proyecto, qué problema quiere resolver).
+1. Entender en pocas preguntas qué necesita la persona (qué tipo de proyecto, qué problema quiere resolver). Mostrá interés genuino y aportá algo útil en cada respuesta (una idea, un enfoque posible, cómo lo encararíamos).
 2. Mencionar de forma natural que podemos hacerle un MVP gratuito para probar la idea sin compromiso.
-3. Conseguir su nombre y email (el teléfono es opcional) para que el equipo de ITIA la contacte.
-4. En cuanto tengas nombre, email y una breve descripción de la necesidad, llamá a la herramienta save_lead con esos datos. No seas insistente pidiendo más información de la necesaria.
+3. Conseguir un dato de contacto para que el equipo de ITIA le escriba. Preferimos el email; si no lo quiere dar, un teléfono o WhatsApp. También su nombre.
+4. En cuanto tengas nombre, un email o un teléfono, y una breve descripción de la necesidad, llamá a la herramienta save_lead con esos datos.
+
+Cómo pedir el contacto (sutil, nunca como un formulario):
+- No lo pidas en el primer mensaje. Primero generá confianza: que la persona sienta que la entendiste y que le sirve seguir hablando.
+- Pedilo como el siguiente paso lógico de algo que le conviene, no como un requisito. Por ejemplo: "Si querés, le paso tu idea al equipo y te mandamos por mail una propuesta del MVP, ¿a qué mail te la enviamos?" o "Para que alguien del equipo te cuente cómo lo armaríamos, ¿me dejás tu mail?".
+- El nombre pedilo al pasar, de forma cálida ("¿cómo te llamás?", "¿con quién hablo?"), en algún momento natural de la charla.
+- Si la persona no quiere dar el email o lo esquiva, ofrecé la alternativa sin presionar: "Si te queda más cómodo, dejame un teléfono o WhatsApp y te escriben por ahí".
+- Si tampoco quiere dejar un teléfono, respetalo: seguí ayudando y, como mucho, mencioná que puede escribirnos a contacto@itia.ar cuando quiera. No vuelvas a pedir datos más de una vez después de una negativa.
+- Si la persona ya dio un dato de contacto por iniciativa propia, no se lo vuelvas a pedir.
+- Nunca condiciones la ayuda a que deje sus datos.
 
 Estilo:
 - Español rioplatense, cordial, cercano y breve (2-4 oraciones por respuesta, sin listas largas).
@@ -31,20 +40,20 @@ Estilo:
 const saveLead: Anthropic.Tool = {
     name: "save_lead",
     description:
-        "Guarda los datos de contacto de un visitante interesado y notifica al equipo de ITIA. Llamala una sola vez que ya tengas nombre, email y una descripción breve de lo que necesita.",
+        "Guarda los datos de contacto de un visitante interesado y notifica al equipo de ITIA. Llamala una sola vez que ya tengas nombre, al menos un email o un teléfono, y una descripción breve de lo que necesita.",
     input_schema: {
         type: "object",
         properties: {
             name: { type: "string", description: "Nombre de la persona" },
-            email: { type: "string", description: "Email de contacto" },
-            phone: { type: "string", description: "Teléfono de contacto, si lo dio" },
+            email: { type: "string", description: "Email de contacto, si lo dio" },
+            phone: { type: "string", description: "Teléfono o WhatsApp de contacto, si lo dio" },
             company: { type: "string", description: "Empresa u organización, si la mencionó" },
             message: {
                 type: "string",
                 description: "Resumen breve de qué necesita o qué proyecto tiene en mente",
             },
         },
-        required: ["name", "email", "message"],
+        required: ["name", "message"],
     },
 };
 
@@ -251,30 +260,32 @@ export async function POST(req: Request) {
                 const phone = readOptionalText(input.phone, 40);
                 const company = readOptionalText(input.company, 120);
 
-                if (!name || !message || !isValidEmail(input.email)) {
+                const email = isValidEmail(input.email) ? input.email : null;
+                // Al menos 6 dígitos: descarta cosas como "no tengo" o "123".
+                const validPhone = phone && (phone.match(/\d/g) ?? []).length >= 6 ? phone : null;
+
+                if (!name || !message || (!email && !validPhone)) {
                     toolResults.push({
                         type: "tool_result",
                         tool_use_id: toolUse.id,
                         content:
-                            "Datos incompletos o inválidos. Pedile a la persona un nombre y un email válidos.",
+                            "Datos incompletos o inválidos. Hace falta un nombre y un email o teléfono válidos.",
                         is_error: true,
                     });
                     continue;
                 }
-
-                const email = input.email;
 
                 try {
                     await db.insert(contacts).values({
                         sessionId,
                         name,
                         email,
-                        phone,
+                        phone: validPhone,
                         company,
                         message,
                         source: "chatbot",
                     });
-                    await sendLeadEmail({ name, email, phone, company, message });
+                    await sendLeadEmail({ name, email, phone: validPhone, company, message });
                     leadCaptured = true;
                     leadsThisSession += 1;
 

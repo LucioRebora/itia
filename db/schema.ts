@@ -8,7 +8,8 @@ export const contacts = pgTable(
         // Permite topear cuántos leads puede disparar una misma sesión.
         sessionId: text("session_id"),
         name: text("name").notNull(),
-        email: text("email").notNull(),
+        // Null cuando el lead del chatbot sólo dejó teléfono.
+        email: text("email"),
         phone: text("phone"),
         company: text("company"),
         message: text("message").notNull(),

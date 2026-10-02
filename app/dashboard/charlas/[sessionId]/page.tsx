@@ -49,8 +49,12 @@ export default async function CharlaPage({ params }: { params: Promise<{ session
                     <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-slate-700">
                         <dt className="text-slate-500">Nombre</dt>
                         <dd>{lead.name}</dd>
-                        <dt className="text-slate-500">Email</dt>
-                        <dd className="break-all">{lead.email}</dd>
+                        {lead.email && (
+                            <>
+                                <dt className="text-slate-500">Email</dt>
+                                <dd className="break-all">{lead.email}</dd>
+                            </>
+                        )}
                         {lead.phone && (
                             <>
                                 <dt className="text-slate-500">Teléfono</dt>

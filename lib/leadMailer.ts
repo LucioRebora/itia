@@ -71,7 +71,7 @@ function render({
  * que hay que convertirlo en excepción para que la ruta lo trate como fallo.
  */
 async function send(options: {
-    replyTo: string;
+    replyTo?: string;
     subject: string;
     html: string;
 }) {
@@ -99,19 +99,19 @@ const DISCLAIMER =
 
 export async function sendLeadEmail(lead: {
     name: string;
-    email: string;
+    email?: string | null;
     phone?: string | null;
     company?: string | null;
     message: string;
 }) {
     await send({
-        replyTo: sanitizeHeader(lead.email, 254),
+        replyTo: lead.email ? sanitizeHeader(lead.email, 254) : undefined,
         subject: `🤖 [CHATBOT ITIA] Nuevo lead: ${sanitizeHeader(lead.name, 80)}`,
         html: render({
             heading: "Nuevo lead desde el chatbot",
             rows: [
                 { label: "Nombre", value: lead.name },
-                { label: "Email", value: lead.email },
+                { label: "Email", value: lead.email || "No especificado" },
                 { label: "Teléfono", value: lead.phone || "No especificado" },
                 { label: "Empresa", value: lead.company || "No especificada" },
             ],
