@@ -2,7 +2,12 @@ import type { NextRequest } from "next/server";
 
 export const SESSION_COOKIE = "itia_session";
 export const OAUTH_STATE_COOKIE = "itia_oauth_state";
-export const ALLOWED_EMAIL = (process.env.ADMIN_EMAIL || "bioitia@gmail.com").toLowerCase();
+export const ALLOWED_EMAILS = (
+    process.env.ADMIN_EMAIL || "bioitia@gmail.com,luciorebora@gmail.com"
+)
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
 const SESSION_DURATION_MS = 1000 * 60 * 60 * 24 * 7; // 7 días
 
 export interface SessionPayload {
@@ -95,7 +100,7 @@ export async function verifySessionToken(token?: string | null): Promise<Session
         const payload = JSON.parse(payloadJson) as SessionPayload;
 
         if (!payload.exp || Date.now() > payload.exp) return null;
-        if (!payload.email || payload.email.toLowerCase() !== ALLOWED_EMAIL) return null;
+        if (!isAllowedEmail(payload.email)) return null;
 
         return payload;
     } catch {
@@ -105,7 +110,7 @@ export async function verifySessionToken(token?: string | null): Promise<Session
 
 export function isAllowedEmail(email?: string | null): boolean {
     if (!email) return false;
-    return email.trim().toLowerCase() === ALLOWED_EMAIL;
+    return ALLOWED_EMAILS.includes(email.trim().toLowerCase());
 }
 
 export function getBaseUrl(req: NextRequest): string {
